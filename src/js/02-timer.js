@@ -3,6 +3,9 @@ import flatpickr from 'flatpickr';
 // Додатковий імпорт стилів
 import "flatpickr/dist/flatpickr.min.css";
 
+import Notiflix from 'notiflix';
+
+
 
 
 
@@ -18,20 +21,20 @@ const minutesDost = document.querySelector('[data-minutes]');
 const secondsDost = document.querySelector('[data-seconds]');
 
 let timeDiff = 0;//Різниця у часі
-let timerId = null;
-let formatDate = null;
+let timerId = null; //ідентифікатор таймера
+let formatDate = null; //формат дати
 
 const options = {
   enableTime: true,//час увімкнення
   time_24hr: true, // час 24 год
   defaultDate: new Date(), //дата за замовчуванням
   minuteIncrement: 1,// хвилинний приріст
-  onClose(selectedDates) {
+  onClose(selectedDates) {// при закритті вибранні дані 0
       console.log(selectedDates[0]);
       currentDifferenceDate(selectedDates[0]);
   },
 };
-function convertMs() {
+function convertMs(ms) {
   // Number of milliseconds per unit of time
   const second = 1000;
   const minute = second * 60;
